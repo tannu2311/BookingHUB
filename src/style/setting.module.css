@@ -1,0 +1,554 @@
+.setting_container {
+  display: flex;
+  max-width: 700px;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  align-items: center;
+  padding: 3px;
+  box-shadow: 2px 2px 32px 0px #0000001F;
+  margin-bottom: 50px;
+}
+
+.setting_tab {
+  width: 210px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 30px;
+  text-align: center;
+  color: var(--body-color);
+  cursor: pointer;
+  padding: 12px 0px;
+}
+
+.active_tab {
+  background-color: #DD1047;
+  color: white;
+  border-radius: 30px;
+}
+
+.active_tab a {
+  color: white;
+}
+
+/* Subscription page CSS start  */
+.subscription_wrapper {
+  max-width: 962px;
+  width: 100%;
+  box-shadow: 4px 4px 32px 0px #00000008;
+  background-color: #FFFFFF;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.active_ribbon {
+  --f: 10px;
+  --r: 15px;
+  --t: 10px;
+
+  position: absolute;
+  inset: var(--t) calc(-1*var(--f)) auto auto;
+  padding: 3px 10px var(--f) calc(10px + var(--r));
+  color: #fff;
+  clip-path:
+    polygon(0 0, 100% 0, 100% calc(100% - var(--f)), calc(100% - var(--f)) 100%,
+      calc(100% - var(--f)) calc(100% - var(--f)), 0 calc(100% - var(--f)),
+      var(--r) calc(50% - var(--f)/2));
+  background: #00a67e;
+  box-shadow: 0 calc(-1*var(--f)) 0 inset #0005;
+  width: 100px;
+}
+
+.in_active_ribbon {
+  --f: 10px;
+  /* control the folded part*/
+  --r: 15px;
+  /* control the ribbon shape */
+  --t: 10px;
+  /* the top offset */
+
+  position: absolute;
+  inset: var(--t) calc(-1*var(--f)) auto auto;
+  padding: 3px 10px var(--f) calc(10px + var(--r));
+  color: #fff;
+  clip-path:
+    polygon(0 0, 100% 0, 100% calc(100% - var(--f)), calc(100% - var(--f)) 100%,
+      calc(100% - var(--f)) calc(100% - var(--f)), 0 calc(100% - var(--f)),
+      var(--r) calc(50% - var(--f)/2));
+  background: #ED093E;
+  box-shadow: 0 calc(-1*var(--f)) 0 inset #0005;
+  width: 100px;
+}
+
+.plan_detail {
+  max-width: 225px;
+  width: 100%;
+  border-right: 1px solid #F0F0F0;
+  padding: 20px;
+  flex: 1;
+  margin-right: 20px;
+}
+
+.plan_detail h3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+}
+
+.plan_detail h2 {
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.plan_detail h2 span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--body-color);
+}
+
+.plan_feature_wrap {
+  display: inline-block;
+  flex-wrap: wrap;
+  flex: 2;
+}
+
+.plan_feature_wrap .planlist {
+  padding: 4px 0;
+}
+
+.plan_feature_wrap .planlist span {
+  margin-right: 8px;
+}
+
+.plan_outer {
+  margin-bottom: 35px;
+}
+
+.ava_plan_list {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.ava_plans_wrap {
+  max-width: 100%;
+  width: 300px;
+  text-align: center;
+  border: 1px solid #E7E7E7;
+  padding: 35px;
+  border-radius: 6px;
+  background-color: #fff;
+  position: relative;
+}
+
+.ava_plans_wrap .ava_plan_detail {
+  border-bottom: 1px solid #F0F0F0;
+  border-right: 0;
+  margin-bottom: 12px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.ava_plans_wrap .ava_plan_detail h3 {
+  background: #FFF3F6;
+  font-size: 18px;
+  display: inline-block;
+  padding: 5px 20px;
+  border-radius: 40px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.av_plan_feature_wrap {
+  width: 100%;
+  text-align: start;
+}
+
+.av_plan_feature_wrap .feat_svg {
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.av_plan_feature_wrap .feature_head {
+  font-weight: 500;
+}
+
+.ava_plan_detail h2 {
+  font-size: 35px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.ava_plan_detail h2 span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--body-color);
+  text-transform: uppercase;
+}
+
+
+.ava_plans_wrap .planlist {
+  padding: 8px 0;
+}
+
+.ava_color_plans_wrap {
+  background-color: var(--primary-color);
+  color: #fff;
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.ava_color_plans_wrap .plan_detail {
+  border-bottom: 1px solid #F0F0F0;
+  border-right: 0;
+  margin-right: 0;
+}
+
+.ava_color_plans_wrap .plan_detail h3 {
+  color: #fff;
+  background: #dd375e;
+  border-radius: 40px;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+}
+
+.ava_color_plans_wrap .plan_detail h2 {
+  color: #fff;
+}
+
+.ava_color_plans_wrap .plan_detail h2 span {
+  color: #fff;
+}
+
+.ava_color_plans_wrap button {
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
+.ava_color_plans_wrap button:hover {
+  color: var(--primary-color);
+}
+
+.payment_method_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 23px;
+  margin-top: 35px;
+}
+
+.payment_method_wrap .payment_paypal {
+  max-width: 130px;
+  width: 100%;
+  background-color: #263B80;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.payment_method_wrap .payment_paypal:hover {
+  background-color: #263B80 !important;
+}
+
+.payment_method_wrap .payment_paypal svg {
+  width: 59px;
+}
+
+.payment_method_wrap .payment_stripe {
+  max-width: 130px;
+  width: 100%;
+  background-color: #635BFF;
+  border-radius: 5px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.payment_method_wrap .payment_stripe:hover {
+  background-color: #635BFF !important;
+}
+
+.payment_method_wrap .payment_stripe svg {
+  width: 40px;
+}
+
+
+/* InVoice Design Css Start  */
+.invoice_wrap {
+  font-size: 14px;
+}
+
+.invoice_heads h3 {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.invoice_heads p {
+  color: #000;
+}
+
+.boxes_wrap {
+  display: flex;
+}
+
+.boxes_wrap div {
+  flex: 1;
+}
+
+.boxes_wrap>div>p {
+  margin: 3px 0;
+}
+
+.boxes_wrap>div>p>span {
+  max-width: 134px;
+  display: inline-block;
+  width: 100%;
+
+}
+
+.summary {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin: 0;
+}
+
+.table_conatiner {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 12px 0px;
+}
+
+.table {
+  min-width: 600px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  border-bottom: 1px solid #e5e1e1;
+}
+
+
+.table th {
+  padding: 8px 0px;
+  padding-left: 15px;
+  color: black;
+  text-align: start;
+  font-size: 14px;
+}
+
+.table td {
+  padding: 8px 0px;
+  padding-left: 15px;
+  text-align: start;
+  font-size: 14px;
+}
+
+/* InVoice Design Css End  */
+.thanku_wrap {
+  text-align: center;
+}
+
+.thanku_wrap img {
+  width: 100px;
+}
+
+.thanku_wrap h3 {
+  font-size: 25px;
+}
+
+.thanku_wrap p {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ribbon {
+  position: absolute;
+  top: -6.1px;
+  right: 10px;
+  color: var(--primary-color);
+}
+
+.ribbon:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  right: 3px;
+  border-left: 53px solid transparent;
+  border-right: 53px solid transparent;
+  border-top: 10px solid #FFF2F5;
+}
+
+.ribbon span {
+  position: relative;
+  display: block;
+  text-align: center;
+  background: #FFF2F5;
+  font-size: 14px;
+  line-height: 1;
+  padding: 12px 8px 10px;
+  border-top-right-radius: 8px;
+  width: 115px;
+}
+
+.ribbon span:before,
+.ribbon span:after {
+  position: absolute;
+  content: "";
+}
+
+.ribbon span:before {
+  height: 6px;
+  width: 6px;
+  left: -6px;
+  top: 0;
+  background: #FFF2F5;
+}
+
+.ribbon span:after {
+  height: 6px;
+  width: 8px;
+  left: -8px;
+  top: 0;
+  border-radius: 8px 8px 0 0;
+  background: #FFF2F5;
+}
+
+/* Language Setting for Widget */
+.language_container {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.lang_header_wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header {
+  border-bottom: 1px solid #F8F8F8 !important;
+  padding: 30px 30px 10px 30px;
+  font-weight: 500;
+}
+
+.lang_header_wrap .words {
+  max-width: 210px;
+  width: 100%;
+}
+
+
+.language_box {
+  width:235px;
+}
+.content_box_wrap{
+  padding: 5px 30px 15px 30px;
+}
+
+.content_wrap {
+  padding: 5px 0px;
+}
+.max_content {
+  margin: 10px 0px;
+  max-width: max-content!important;
+}
+.header_flex_gap{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.header_flex_gap button{
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 1180px) {
+  .plan_detail h3 {
+    font-size: 16px;
+  }
+
+  .plan_detail h2 {
+    font-size: 28px;
+  }
+
+  .plan_detail h2 span {
+    font-size: 12px;
+  }
+
+}
+
+
+@media screen and (max-width: 640px) {
+  .boxes_wrap {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 608px) {
+  .ava_plan_list {
+    flex-direction: column;
+  }
+
+  .ava_plans_wrap {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 572px) {
+  .setting_tab {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 472px) {
+  .subscription_wrapper {
+    flex-direction: column;
+  }
+
+  .plan_detail {
+    border-right: 0;
+    margin-right: 0px;
+    border-bottom: 1px solid #F0F0F0;
+    margin-bottom: 20px;
+  }
+
+  .plan_feature_wrap .planlist {
+    padding: 8px 0;
+  }
+
+  .plan_feature_wrap {
+    margin-bottom: 15px;
+  }
+  .header_flex_gap{
+    flex-direction: column;
+    gap: 0;
+  }
+  .header_flex_gap button{
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width:410px) {
+  .setting_container {
+    flex-direction: column;
+  }
+
+  .active_tab {
+    width: 100%;
+  }
+  .lang_header_wrap{
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}

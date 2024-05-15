@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--=== Required meta tags ===-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--=== custom css ===-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+        crossorigin="anonymous" />
+    <link rel="shortcut icon" type="image/ico" href="/home/assets/images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="home/assets/css/home.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!--=== custom css ===-->
+    <title>BookingHub</title>
+
+    <script>
+
+        let fetchPlans = async () => {
+            const plans_loader = document.getElementById('plans_loader');
+            for (let i = 0; i < 3; i++) {
+                const skeletonplanDiv = document.createElement('div');
+                skeletonplanDiv.className = 'skeleton  skeleton-text__body';
+                plans_loader.appendChild(skeletonplanDiv);
+            }
+            let response = await fetch(`/api/admin/plan?islandingPage=${true}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            let res = await response.json();
+            showPlans(res.data);
+
+        }
+        window.onload = fetchPlans;
+
+        let showPlans = (plans) => {
+
+            for (i = 0; i < plans.length; i++) {
+                createPlanBox(plans[i], i);
+            }
+        }
+
+        let purchasePlan = (id) => {
+            localStorage.setItem("bookinghub_planId", id);
+            window.location.href = '/registration';
+        }
+
+        function createPlanBox(data, i) {
+
+            const plans_loader = document.getElementById('plans_loader');
+            plans_loader.style.display = 'none';
+
+            const parentDiv = document.getElementById('plan_div');
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col-lg-4', 'col-md-6');
+
+            const planWrapperDiv = document.createElement('div');
+            if (data?.isRecommended) {
+                planWrapperDiv.classList.add('bh_plan_wrapper', 'odd_plan_wrap');
+                const ribbon = document.createElement("span");
+                ribbon.classList.add("ribbon");
+                const innerSpan = document.createElement("span");
+                innerSpan.innerText = "Recommended";
+                ribbon.appendChild(innerSpan);
+                planWrapperDiv.appendChild(ribbon);
+            } else {
+                planWrapperDiv.classList.add('bh_plan_wrapper');
+            }
+
+
+            const planUpperDiv = document.createElement('div');
+            if (data?.isRecommended) {
+                planUpperDiv.classList.add('plan_upper', 'odd_uper_part');
+            } else {
+                planUpperDiv.classList.add('plan_upper');
+            }
+
+
+            const planTitle = document.createElement('h4');
+            planTitle.textContent = (data.planname).charAt(0).toUpperCase() + (data.planname).slice(1);
+
+            const planAmountDiv = document.createElement('div');
+            planAmountDiv.classList.add('plan_amount');
+
+            const planPrice = document.createElement('h3');
+            planPrice.innerHTML = `$${data.price} <span>/${data.paymentPeriod}</span>`;
+
+            const planDescription = document.createElement('p');
+            planDescription.textContent = data.description;
+
+            const planFeatureDiv = document.createElement('div');
+            if (data?.isRecommended) {
+                planFeatureDiv.classList.add('bh_plan_feature', 'odd_feature');
+            } else {
+                planFeatureDiv.classList.add('bh_plan_feature');
+            }
+
+            const feature1 = document.createElement('p');
+            feature1.innerHTML = `<img src="home/assets/image/tick.png" alt="tick" /> No of campaign : <span> ${data.noOfCampaigns}</span>`;
+
+            const feature2 = document.createElement('p');
+            feature2.innerHTML = `<img src="home/assets/image/tick.png" alt="tick" /> Free trial : <span> ${data.freeTrialPeriod ? data.freeTrialPeriod : 'NA'} ${data.freeTrialPeriod ? data.freeTrialPeriod > 1 ? 'days' : 'day' : ''}</span>`;
+
+            const textCenterDiv = document.createElement('div');
+            textCenterDiv.classList.add('text-center', 'pt-3');
+
+            const chooseBtn = document.createElement('div');
+            chooseBtn.classList.add('bh_btn');
+
+
+            const chooseBtnLink = document.createElement('a');
+            chooseBtnLink.textContent = 'Choose';
+
+            // Appending elements
+            planAmountDiv.appendChild(planPrice);
+            planUpperDiv.appendChild(planTitle);
+            planUpperDiv.appendChild(planAmountDiv);
+            planUpperDiv.appendChild(planDescription);
+            planFeatureDiv.appendChild(feature1);
+            planFeatureDiv.appendChild(feature2);
+            textCenterDiv.appendChild(chooseBtn);
+            chooseBtn.appendChild(chooseBtnLink);
+            planWrapperDiv.appendChild(planUpperDiv);
+            planWrapperDiv.appendChild(planFeatureDiv);
+            planWrapperDiv.appendChild(textCenterDiv);
+            colDiv.appendChild(planWrapperDiv);
+
+            chooseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                purchasePlan(data._id)
+            })
+
+            // Append the created elements to the body
+            parentDiv.appendChild(colDiv);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            let toggle_btn = document.getElementById('tog_btn');
+            let headerDiv = document.getElementById('header');
+            let formSub = document.querySelector('#contactForm');
+
+            const yearElement = document.getElementById("year");
+
+            if (toggle_btn && headerDiv && formSub && yearElement) {
+                const currentYear = new Date().getFullYear();
+
+                yearElement.innerText = currentYear.toString();
+
+
+                // Menu Button toggle in responsivness 
+                toggle_btn.addEventListener("click", function () {
+                    if (headerDiv.classList.contains('toggle')) {
+                        headerDiv.classList.remove('toggle');
+                    } else {
+                        headerDiv.classList.add('bh_flex_menu', 'toggle');
+                    }
+                });
+
+                window.addEventListener("click", function (event) {
+                    if (!headerDiv.contains(event.target) && !toggle_btn.contains(event.target)) {
+                        headerDiv.classList.remove('toggle');
+                        headerDiv.classList.add('bh_flex_menu');
+                    }
+                });
+
+
+                //  Contact Form send message click 
+                formSub.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const send_btn = document.getElementById('send_mess');
+                    send_btn.classList.add('button-loading');
+
+
+                    const first_name = document.getElementById('first_name').value;
+                    const last_name = document.getElementById('last_name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+                    let formObj = { 'first_name': first_name, 'last_name': last_name, 'email': email, 'subject': subject, 'message': message };
+
+                    if (validateForm(formObj)) {
+                        let sendMessage = async () => {
+                            let response = await fetch(`/api/externalWidgetApi`, {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(formObj)
+                            });
+                            let res = await response.json();
+                            if (res.status == 1) {
+                                send_btn.classList.remove('button-loading');
+                                alert(res.message);
+                                document.getElementById('first_name').value = '';
+                                document.getElementById('last_name').value = '';
+                                document.getElementById('email').value = '';
+                                document.getElementById('subject').value = '';
+                                document.getElementById('message').value = '';
+                            }
+
+                        }
+                        sendMessage();
+
+                    }
+                });
+
+                function isValidEmail(email) {
+                    return /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(email);
+                }
+
+                function validateForm(formObj) {
+                    let validation = true;
+
+                    Object.keys(formObj).map((key) => {
+                        let errorElement = document.getElementById(`${key}_error`);
+                        if (!formObj[key]) {
+                            errorElement.textContent = `This field is required.`;
+                            validation = false;
+                        } else if (key == 'email') {
+                            if (!isValidEmail(formObj[key])) {
+                                errorElement.textContent = `Please enter a valid email address.`;
+                                validation = false;
+                            } else { errorElement.textContent = ''; }
+                        } else {
+                            errorElement.textContent = '';
+                        }
+                    })
+
+                    return validation;
+                }
+            }
+
+
+            //  Bottom to top Button scroll 
+            var btn = document.getElementById('button');
+
+            if (btn) {
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > 300) {
+                        btn.style.display = 'flex';
+                    } else {
+                        btn.style.display = 'none';
+                    }
+                });
+
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.body.scrollTop = 0; // For Safari
+                    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+                });
+            }
+
+            // Nav Link Click To scroll particular section 
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', scrollToSection);
+            });
+
+            function scrollToSection(event) {
+                (headerDiv) && headerDiv.classList.remove('toggle');
+
+                const targetSectionId = this.getAttribute('data-section');
+                const targetSection = document.getElementById(targetSectionId);
+
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+
+
+
+        });
+
+    </script>
+</head>
+
+<body>
+
+
+    <!-- Bottom To Top -->
+    <div class="pl_top_icon">
+        <a id="button" class="show cursor_common">
+            <svg width="23" height="18" viewBox="0 0 23 18">
+                <path
+                    d="M13.825,18.000 C10.772,18.000 7.928,16.517 6.217,14.033 C5.870,13.530 6.006,12.845 6.519,12.505 C7.032,12.165 7.729,12.297 8.076,12.801 C9.369,14.678 11.518,15.799 13.825,15.799 C17.647,15.799 20.757,12.749 20.757,9.000 C20.757,5.251 17.647,2.200 13.825,2.200 C11.512,2.200 9.359,3.326 8.067,5.212 C7.721,5.717 7.024,5.851 6.510,5.512 C5.996,5.173 5.859,4.489 6.205,3.985 C7.915,1.490 10.763,-0.000 13.825,-0.000 C18.884,-0.000 23.000,4.037 23.000,9.000 C23.000,13.963 18.884,18.000 13.825,18.000 ZM11.293,6.704 C10.902,6.313 10.902,5.679 11.293,5.287 C11.683,4.896 12.316,4.896 12.707,5.287 L15.706,8.291 C15.730,8.315 15.752,8.339 15.772,8.365 C15.777,8.371 15.782,8.377 15.787,8.384 C15.802,8.403 15.817,8.423 15.831,8.443 C15.835,8.449 15.838,8.455 15.842,8.462 C15.856,8.483 15.869,8.505 15.881,8.527 C15.883,8.532 15.886,8.537 15.888,8.541 C15.901,8.566 15.913,8.590 15.923,8.616 C15.925,8.619 15.925,8.622 15.927,8.626 C15.938,8.653 15.948,8.680 15.956,8.708 C15.957,8.712 15.958,8.715 15.959,8.719 C15.967,8.747 15.974,8.774 15.980,8.803 C15.982,8.812 15.982,8.820 15.984,8.829 C15.988,8.852 15.992,8.876 15.995,8.900 C15.998,8.933 16.000,8.966 16.000,9.000 C16.000,9.033 15.998,9.067 15.995,9.100 C15.992,9.124 15.988,9.148 15.984,9.172 C15.982,9.180 15.982,9.189 15.980,9.197 C15.974,9.226 15.967,9.254 15.959,9.282 C15.958,9.285 15.957,9.288 15.956,9.292 C15.948,9.320 15.938,9.348 15.927,9.375 C15.925,9.378 15.925,9.381 15.923,9.384 C15.913,9.410 15.901,9.435 15.888,9.459 C15.886,9.464 15.883,9.468 15.881,9.473 C15.869,9.495 15.856,9.517 15.842,9.539 C15.838,9.545 15.835,9.551 15.831,9.557 C15.817,9.577 15.802,9.597 15.787,9.616 C15.782,9.623 15.777,9.629 15.772,9.636 C15.752,9.661 15.730,9.685 15.707,9.708 L12.707,12.712 C12.511,12.908 12.256,13.006 12.000,13.006 C11.744,13.006 11.488,12.908 11.293,12.712 C10.902,12.321 10.902,11.688 11.293,11.296 L12.586,10.001 L1.000,10.001 C0.448,10.001 -0.000,9.553 -0.000,9.000 C-0.000,8.447 0.448,7.998 1.000,7.998 L12.586,7.998 L11.293,6.704 Z">
+                </path>
+            </svg>
+        </a>
+    </div>
+    <!-- Bottom To Top -->
+
+    <!-- Banner Section Start -->
+    <div class="first_wrap">
+        <header class="bh_header_wrapper">
+            <!-- <div class="bh_head_overlay"></div> -->
+            <div class="container">
+                <div class="bh_flex_menu  " id="header">
+                    <div class="bh_logo">
+                        <img src="home/assets/image/Logo.png" alt="Logo" />
+                    </div>
+                    <nav class="bh_menu">
+                        <ul>
+                            <li>
+                                <a href="#" data-section="home">Home</a>
+                            </li>
+                            <li>
+                                <a href="#" data-section="service">Services</a>
+                            </li>
+                            <li>
+                                <a href="#" data-section="plan"> Pricing Plans</a>
+                            </li>
+                            <li>
+                                <a href="#" data-section="contact">Contact</a>
+                            </li>
+                        </ul>
+
+                        <div class="bh_btn login">
+                            <a href="/login">Login</a>
+                        </div>
+
+                        <div class="bh_toggle" id="tog_btn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div>
+
+            </div>
+
+        </header>
+        <section id="home" class="bh_banner_wrapper" style="background-image: url(home/assets/image/bannerBG.png)">
+            <img src="home/assets/image/s1.png" alt="shape" class="bh_banner_s1" />
+            <img src="home/assets/image/s2.png" alt="shape" class="bh_banner_s2" />
+            <img src="home/assets/image/s3.png" alt="shape" class="bh_banner_s3" />
+            <img src="home/assets/image/s4.png" alt="shape" class="bh_banner_s4" />
+            <img src="home/assets/image/s5.png" alt="shape" class="bh_banner_s5" />
+
+            <div class="container">
+                <div class="row gy-4 justify-content-center p-60">
+                    <div class="col-lg-6 col-md-12 flex_align_center">
+                        <div class="banner_content_left">
+                            <h5>Hello Welcome!!</h5>
+                            <h3>Bookinghub <span>Booking System </span> </h3>
+                            <h3> For <span>Multiple Business </span> </h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus obcaecati
+                                perferendis ipsa et, quasi ducimus beatae expedita praesentium adipisci nemo officiis
+                                enim nisi porro assumenda amet at aut numquam qui.</p>
+
+                            <div class="bh_btn"><a href="#plan" data-section="plan">Buy Now</a></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 text-end relative">
+                        <div>
+                            <img src="home/assets/image/Image.png" alt="banner side img" />
+                            <img src="home/assets/image/v1.png" alt="vector" class="vector1" />
+                            <img src="home/assets/image/v2.png" alt="vector" class="vector2" />
+                            <img src="home/assets/image/s6.png" alt="vector" class="bh_banner_s6" />
+                        </div>
+                    </div>
+                </div>
+
+        </section>
+    </div>
+
+    <section id="sponser">
+        <div class="bh_sponser">
+            <div><img src="home/assets/image/sp1.png" alt="Logo" /> </div>
+            <div><img src="home/assets/image/sp2.png" alt="Logo" /> </div>
+            <div><img src="home/assets/image/sp3.png" alt="Logo" /> </div>
+            <div><img src="home/assets/image/sp4.png" alt="Logo" /> </div>
+            <div><img src="home/assets/image/sp5.png" alt="Logo" /> </div>
+        </div>
+    </section>
+
+
+    <!-- Service section -->
+    <section id="service">
+        <div class="bh_service_wrapper" style="background-image: url(home/assets/image/service_BG.png)">
+            <img src="home/assets/image/ser_v1.png" alt="vector" class="ser_vector1" />
+            <img src="home/assets/image/ser_v2.png" alt="vector" class="ser_vector2" />
+            <img src="home/assets/image/ser_s1.png" alt="vector" class="ser_lawyer" />
+            <img src="home/assets/image/ser_s2.png" alt="vector" class="ser_lap" />
+            <img src="home/assets/image/ser_s4.png" alt="vector" class="ser_bal" />
+            <img src="home/assets/image/ser_s5.png" alt="vector" class="ser_boy" />
+            <img src="home/assets/image/ser_v3.png" alt="vector" class="ser_vector3" />
+            <img src="home/assets/image/ser_v4.png" alt="vector" class="ser_vector4" />
+            <img src="home/assets/image/s2.png" alt="vector" class="ser_girl" />
+
+
+            <div class="container">
+                <div class="bh_service_head">
+                    <div class="bh_ser_top">Services</div>
+                    <h3>Booking For Professionals</h3>
+                </div>
+                <div class="row gy-4 justify-content-center p-60">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/event.png" alt="event box" />
+                                <img src="home/assets/image/event_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Event</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 ">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/restraurant.png" alt="event box" />
+                                <img src="home/assets/image/res_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Restaurant</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/club.png" alt="event box" />
+                                <img src="home/assets/image/club_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Clubs</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/doctor.png" alt="event box" />
+                                <img src="home/assets/image/doc_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Doctors</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/eng.png" alt="event box" />
+                                <img src="home/assets/image/eng_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Engineers</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/lawyer.png" alt="event box" />
+                                <img src="home/assets/image/lawyer_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Lawyers</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/tech.png" alt="event box" />
+                                <img src="home/assets/image/tch_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Technician</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/acc.png" alt="event box" />
+                                <img src="home/assets/image/acc_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Accountants</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="bh_service_box">
+                            <div class="bh_serv_imgs_wrap">
+                                <img src="home/assets/image/teacher.png" alt="event box" />
+                                <img src="home/assets/image/teacher_shadow.png" alt="shadow" />
+                            </div>
+                            <h4>Teachers</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius accusantium r?</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="text-center">
+                    <div class="bh_btn "><a>View More</a></div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan section  -->
+    <section id="plan" class="plan">
+        <div class="container">
+            <div class="bh_service_head">
+                <div class="bh_ser_top">Plans</div>
+                <h3>Our Pricing Plans</h3>
+            </div>
+            <div class="row gy-4 justify-content-center p-60" id="plan_div">
+                <div id="plans_loader" class="bh_plan_loading"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Form  -->
+    <section id="contact">
+        <div class="bh_contact_wrapper" style="background-image: url(home/assets/image/service_BG.png)">
+            <div class="container">
+                <div class="bh_service_head">
+                    <div class="bh_ser_top">Contact Us</div>
+                    <h3>How Can We Help?</h3>
+                </div>
+            </div>
+
+            <div class="container p-60">
+                <div class="bh_contact_form_wrapper">
+                    <div class="row gy-4 justify-content-center" id="plan_div">
+                        <div class="col-lg-5 col-md-6">
+                            <div style="background-image: url(home/assets/image/contact_bg.png)" class="first_wrap">
+                                <div class="contact_detail">
+                                    <h4>Contact Information</h4>
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas minima possimus!
+                                    </p>
+                                    <div class="con_info">
+                                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M1.66017 0.927901L7.87254 7.14297C9.22747 8.4953 11.4423 8.49647 12.7984 7.14297L19.0107 0.927901C19.0254 0.913298 19.0367 0.895641 19.0438 0.876184C19.0509 0.856726 19.0537 0.835944 19.0518 0.815311C19.05 0.794678 19.0437 0.7747 19.0333 0.756792C19.0229 0.738885 19.0086 0.723487 18.9916 0.71169C18.358 0.26979 17.587 0.0078125 16.7566 0.0078125H3.91435C3.08386 0.0078125 2.31293 0.269835 1.6793 0.71169C1.66227 0.723487 1.64805 0.738885 1.63764 0.756792C1.62723 0.7747 1.62089 0.794678 1.61906 0.815311C1.61724 0.835944 1.61997 0.856726 1.62708 0.876184C1.63418 0.895641 1.64548 0.913298 1.66017 0.927901ZM1.24629e-06 3.92212C-0.000504569 3.29063 0.152964 2.66854 0.447111 2.10974C0.457379 2.09004 0.472151 2.07304 0.490226 2.06013C0.5083 2.04721 0.529168 2.03874 0.551132 2.03541C0.573096 2.03207 0.595536 2.03397 0.61663 2.04094C0.637724 2.04791 0.656876 2.05975 0.672529 2.07552L6.80626 8.20925C8.74861 10.1544 11.9212 10.1556 13.8647 8.20925L19.9984 2.07552C20.0141 2.05975 20.0332 2.04791 20.0543 2.04094C20.0754 2.03397 20.0979 2.03207 20.1198 2.03541C20.1418 2.03874 20.1627 2.04721 20.1807 2.06013C20.1988 2.07304 20.2136 2.09004 20.2238 2.10974C20.518 2.66855 20.6714 3.29063 20.671 3.92212V12.0935C20.671 14.2535 18.9139 16.0078 16.7566 16.0078H3.91435C1.75709 16.0078 1.24629e-06 14.2535 1.24629e-06 12.0935V3.92212Z"
+                                                fill="white" />
+                                        </svg>
+
+                                        <span>example@gmail.com</span>
+                                    </div>
+                                    <div class="con_info">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12.1641 10.5921C11.6414 10.0761 10.9888 10.0761 10.4694 10.5921C10.0732 10.985 9.67698 11.3779 9.28743 11.7774C9.18089 11.8873 9.091 11.9106 8.96115 11.8373C8.70478 11.6975 8.43177 11.5843 8.18539 11.4311C7.03673 10.7087 6.07452 9.77974 5.22218 8.73429C4.79934 8.2149 4.42311 7.65888 4.16009 7.03295C4.10681 6.90643 4.1168 6.82319 4.22002 6.71998C4.61622 6.33709 5.00244 5.94422 5.39198 5.55134C5.93468 5.00531 5.93468 4.36606 5.38865 3.8167C5.07901 3.50373 4.76937 3.19742 4.45974 2.88445C4.14011 2.56483 3.82381 2.24187 3.50086 1.92557C2.97813 1.41617 2.32556 1.41617 1.80617 1.9289C1.40663 2.32178 1.02375 2.72464 0.617555 3.11086C0.241327 3.46711 0.0515486 3.90327 0.0115952 4.41267C-0.0516643 5.2417 0.151432 6.02412 0.437764 6.78657C1.02375 8.36472 1.91604 9.76642 2.99811 11.0516C4.45974 12.7896 6.20437 14.1646 8.24532 15.1568C9.16424 15.6029 10.1165 15.9459 11.1519 16.0025C11.8644 16.0424 12.4837 15.8626 12.9798 15.3066C13.3194 14.9271 13.7023 14.5808 14.0619 14.2179C14.5946 13.6785 14.5979 13.0259 14.0685 12.4932C13.4359 11.8573 12.8 11.2247 12.1641 10.5921ZM11.5282 7.93855L12.7567 7.7288C12.5636 6.60012 12.0309 5.57798 11.2218 4.76559C10.3662 3.90992 9.28411 3.37055 8.09216 3.20408L7.91903 4.43931C8.84129 4.56915 9.68031 4.98534 10.3429 5.6479C10.9688 6.27383 11.3783 7.06624 11.5282 7.93855ZM13.4492 2.59812C12.0309 1.17978 10.2363 0.284157 8.25531 0.0078125L8.08217 1.24304C9.79351 1.48276 11.345 2.25852 12.5703 3.48043C13.7322 4.6424 14.4947 6.11069 14.771 7.72547L15.9996 7.51572C15.6766 5.64457 14.7943 3.94655 13.4492 2.59812Z"
+                                                fill="white" />
+                                        </svg>
+
+                                        <span>(603) 555-0123</span>
+                                    </div>
+                                    <div class="con_info">
+                                        <svg width="12" height="16" viewBox="0 0 12 16" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M8.18017 13.7222C7.8866 14.0348 7.58334 14.3382 7.27084 14.6319L7.26474 14.6376C6.84268 15.0277 6.28908 15.2444 5.71434 15.2445C5.1396 15.2445 4.58595 15.028 4.16379 14.638L4.15731 14.6323C3.845 14.3382 3.54175 14.0347 3.24798 13.7222H1.23274C1.16199 13.7221 1.09264 13.7418 1.03247 13.779C0.972304 13.8162 0.923716 13.8695 0.89217 13.9328L0.130265 15.4566C0.10125 15.5147 0.0875532 15.5792 0.0904738 15.6441C0.0933943 15.7089 0.112836 15.7719 0.146953 15.8272C0.181071 15.8824 0.228733 15.928 0.285416 15.9596C0.3421 15.9912 0.405926 16.0078 0.470837 16.0079H10.9577C11.0226 16.0078 11.0864 15.9912 11.1431 15.9596C11.1998 15.928 11.2475 15.8824 11.2816 15.8272C11.3157 15.7719 11.3351 15.7089 11.3381 15.6441C11.341 15.5792 11.3273 15.5147 11.2983 15.4566L10.5364 13.9328C10.5048 13.8695 10.4562 13.8162 10.3961 13.779C10.3359 13.7418 10.2665 13.7221 10.1958 13.7222H8.18017Z"
+                                                fill="white" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M5.71429 0.0078125C8.86819 0.0078125 11.4286 2.56819 11.4286 5.7221C11.4286 9.22686 8.27657 12.6444 6.74971 14.076L6.74781 14.0779C6.4665 14.338 6.09749 14.4825 5.71436 14.4826C5.33123 14.4826 4.96216 14.3383 4.68076 14.0783L4.67886 14.0764C3.152 12.6444 0 9.22686 0 5.7221C0 2.56819 2.56038 0.0078125 5.71429 0.0078125ZM5.71429 3.81734C4.66286 3.81734 3.80952 4.67067 3.80952 5.7221C3.80952 6.77353 4.66286 7.62686 5.71429 7.62686C6.76571 7.62686 7.61905 6.77353 7.61905 5.7221C7.61905 4.67067 6.76571 3.81734 5.71429 3.81734Z"
+                                                fill="white" />
+                                        </svg>
+
+                                        <span>4140 Parker Rd. Allentown, New Mexico 31134</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-7 col-md-6 p-3">
+                            <form id="contactForm">
+                                <div class="input_wrapper_list">
+                                    <div class="input_wrapper">
+                                        <label for="first_name">First Name</label>
+                                        <input class="input" type="text" name="first_name" placeholder="First Name"
+                                            id="first_name" />
+                                        <span id="first_name_error" class="error"></span>
+
+                                    </div>
+                                    <div class="input_wrapper">
+                                        <label for="last_name">Last Name</label>
+                                        <input class="input" type="text" name="last_name" placeholder="Last Name"
+                                            id="last_name" />
+                                        <span id="last_name_error" class="error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="input_wrapper_list">
+                                    <div class="input_wrapper">
+                                        <label for="email">Email</label>
+                                        <input class="input" type="email" name="email" placeholder="Email" id="email" />
+                                        <span id="email_error" class="error"></span>
+
+                                    </div>
+                                    <div class="input_wrapper">
+                                        <label>Subject</label>
+                                        <input class="input" type="text" name="subject" placeholder="Subject"
+                                            id="subject" />
+                                        <span id="subject_error" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="input_wrapper">
+                                    <label for="subject">Message</label>
+                                    <textarea class="input" rows="4" cols="2" placeholder="Message" name="message"
+                                        id="message"></textarea>
+                                    <span id="message_error" class="error"></span>
+
+                                </div>
+                                <div class="send_btn"><button type="submit" class="bh_btn" id="send_mess"><a>Send
+                                            Message</a></button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="home/assets/image/ball1.png" alt="vector" class="con_ball1" />
+            <img src="home/assets/image/ball2.png" alt="vector" class="con_ball2" />
+            <img src="home/assets/image/con_v1.png" alt="vector" class="con_vec1" />
+            <img src="home/assets/image/con_v2.png" alt="vector" class="con_vec2" />
+            <img src="home/assets/image/s1.png" alt="vector" class="con_bus" />
+            <img src="home/assets/image/footer_cal.png" alt="vector" class="con_cal" />
+            <img src="home/assets/image/s4.png" alt="vector" class="con_build" />
+
+        </div>
+    </section>
+
+    <!-- Footer Section   -->
+    <footer>
+        <div class="bh_footer_wrap">
+
+            <div class="container">
+                <div class="row gy-4 justify-content-center p-60">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="bh_footer_first">
+                            <img src="home/assets/image/Logo_white.png" alt="logo" class="bh_footer_logo_img" />
+                            <p class="pb-3">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae pariatur nihil natus unde
+                                cupiditate quasi culpa veritatis rerum soluta delectu.
+                            </p>
+                            <div class="d-flex gap-lg-6 gap-md-3 social_icon">
+                                <a target="_blank" href="https://www.facebook.com/"><img src="home/assets/image/FB.png"
+                                        alt="fb" /></a>
+                                <a target="_blank" href="https://twitter.com/"><img src="home/assets/image/Twitter.png"
+                                        alt="twitter" /></a>
+                                <a target="_blank" href="https://in.pinterest.com/"><img
+                                        src="home/assets/image/Pritrest.png" alt="pritrest" /></a>
+                                <a target="_blank" href="https://www.instagram.com/"><img
+                                        src="home/assets/image/Insta.png" alt="insta" /></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 pt-lg-3 pt-md-2 pt-sm-1">
+                        <div class="bh_footer_list">
+                            <h4>Our Services</h4>
+                            <ul>
+                                <li><a href="#">Hotels</a></li>
+                                <li><a href="#"> Seat/Room Booking</a></li>
+                                <li><a href="#"> Engineering, Industrial Services</a></li>
+                                <li> <a href="#">Internet Of Things</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 pt-lg-3 pt-md-2 pt-sm-1">
+                        <div class="bh_footer_list">
+                            <h4>Our Services</h4>
+                            <ul>
+                                <li><a href="#">Event Booking</a></li>
+                                <li><a href="#"> Interactive, Analytics & Insights</a></li>
+                                <li> <a href="#">Engineering, Industrial Services</a></li>
+                                <li><a href="#">Internet Of Thing</a>s</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 pt-lg-3 pt-md-2 pt-sm-1">
+                        <div class="bh_footer_list">
+                            <h4>Express</h4>
+
+                            <ul>
+                                <li><a href="#">Tax Consultant</a></li>
+                                <li> <a href="#">Teachers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <img src="home/assets/image/s5.png" alt="shape" class="bh_footer_s1">
+            <img src="home/assets/image/footer_tab.png" alt="shape" class="bh_footer_s2">
+            <img src="home/assets/image/footer_cal.png" alt="vector" class="bh_footer_s3">
+            <img src="home/assets/image/footer_girl.png" alt="shape" class="bh_footer_s4">
+        </div>
+    </footer>
+    <div class="bh_copy_write">Copyright <span id="year"> </span> <span>BookingHub</span> . All Right Reserved.</div>
+
+
+</body>
+
+</html>

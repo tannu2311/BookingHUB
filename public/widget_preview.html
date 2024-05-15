@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Preview</title>
+    <script>
+
+        window.onload = function () {
+            const searchParams = new URLSearchParams(window.location.search);
+            let cid = searchParams.get('cid');
+            let ctype = searchParams.get('ctype');
+
+            if (ctype && cid) {
+                const divElement = document.createElement('div');
+                divElement.className = 'bookinghub';
+                divElement.setAttribute('data-campaign', cid);
+                divElement.setAttribute('data-camp-type', ctype);
+                document.body.appendChild(divElement);
+
+                if(divElement)
+                {
+                const scriptElement = document.createElement('script');
+                scriptElement.src = '/widget-form.js';
+                document.head.appendChild(scriptElement);
+                }
+            }
+        };
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

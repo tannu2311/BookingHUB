@@ -1,0 +1,629 @@
+.tab_wrapper {
+    max-width: 590px;
+    width: 100%;
+    display: flex;
+    gap: 15px;
+}
+
+.tab_wrapper .tab_single {
+    max-width: 195px;
+    width: 100%;
+    color: #222222;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 50px;
+    text-align: left;
+}
+
+.tab {
+    cursor: pointer;
+    max-width: 196px;
+    width: 100%;
+    height: 10px;
+    background-color: #DFDFDF;
+    position: relative;
+}
+
+.tab::before {
+    position: absolute;
+    content: '';
+    left: -8px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 5px solid #DFDFDF;
+    border-left: 8px solid transparent;
+    border-bottom: 5px solid #DFDFDF;
+}
+
+.tab::after {
+    position: absolute;
+    content: '';
+    right: -8px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 8px solid #DFDFDF;
+    border-bottom: 5px solid transparent;
+}
+
+.tab.active_tab {
+    background-color: var(--primary-color);
+}
+
+.active_tab::after {
+    border-left: 8px solid var(--primary-color);
+}
+
+.active_tab::before {
+    border-top: 5px solid var(--primary-color);
+    border-left: 8px solid transparent;
+    border-bottom: 5px solid var(--primary-color);
+}
+
+.steps_form_wrap {
+    max-width: 840px;
+    width: 100%;
+    box-shadow: 4px 4px 32px 0px #00000008;
+    background-color: #FFFFFF;
+    padding: 45px;
+    margin-top: 50px;
+
+}
+
+.step2_form_wrap {
+    max-width: 840px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+/* / Step 2 Bussiness Hour Section Css Start  / */
+.booking_campaign{
+    max-width: 840px;
+    width: 100%;
+}
+
+.accordian_heading{
+    font-size: 14px!important;
+    font-weight: 500!important;
+    font-family: 'Libre Franklin', sans-serif!important;
+}
+
+
+
+.bussiness_hour_singe_wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    font-size: 14px;
+}
+
+
+.hour_wrap_label{
+    display: flex;
+    align-items: baseline;
+}
+.hour_wrap_label label {
+    margin-bottom: 10px;
+    margin-right: 0px;
+    display: block;
+    color: #222222;
+    font-size: 14px;
+    font-weight: 500;
+    width: 130px;
+}
+.hour_wrap_label div {
+    margin-bottom: 10px;
+    margin-right: 0px;
+    display: block;
+    color: #222222;
+    font-size: 14px;
+    font-weight: 500;
+    width: 170px;
+}
+.event_hour label{
+    width: 145px;
+}
+.event_hour div{
+    width: 345px;
+}
+.single_hour_wrap .days_data {
+    display: flex;
+    align-items: baseline;
+    width: 115px;
+}
+.single_hour_wrap .days_data span{
+    color: var( --body-color)!important;
+    font-size: 14px!important;
+}
+.bussiness_hour_singe_wrapper .date_list_wrap {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* / Step 3 Form template Section Css Start  / */
+.step3_main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(226px, 1fr));
+    grid-gap: 15px;
+}
+.main_card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #DCDCDC;
+    display: block;
+    padding: 10px
+}
+.main_card:hover{
+    border-color: var(--primary-color);
+}
+.step3_main .active_card{
+    border-color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.15);
+}
+.child_card {
+    position: relative;
+    min-height: 250px;
+    background-color: #E2E2E2;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.child_card img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #eef0f5;
+}
+.card_overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s cubic-bezier(.25,.8,.25,1);
+}
+.card_overlay .preview{
+    padding: 10px 20px;
+    color: var(--main-color);
+    background-color: #fff;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.child_card:hover .card_overlay{
+    opacity: 1;
+    visibility: visible;
+}
+.main_card p{
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin: 0;
+}
+.steps_form_wrap h1 {
+    font-size: 26px;
+    color: #222222;
+}
+
+.main_card label {
+    font-size: 15px;
+    color: #222222;
+    font-weight: 400;
+}
+
+.subheadline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+ .inputhadline {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 25px;
+    justify-content: space-between;
+ }
+
+.input2 {
+    margin-left: 40px;
+}
+
+.adjust_buton {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+.back_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 46px;
+    border: 1px solid #797979;
+    text-transform: capitalize !important;
+    box-shadow: 4px 4px 32px 0px #00000008;
+    border-radius: 5px;
+    width: 151px;
+    background-color: white;
+    color: #797979;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0 30px;
+    cursor: pointer;
+    outline: none;
+    transition: all .5s;
+    position: relative;
+    font-family: Libre Franklin;
+
+}
+
+.back_button:hover {
+    color: var(--primary-color) !important;
+    background-color: #ffffff !important;
+    box-shadow: 0px 0px 0px 2px var(--primary-color);
+
+}
+
+
+
+/* Payment Section Csss */
+
+.payment_wrap .payment_method_wrap {
+    display: flex;
+    gap: 15px;
+}
+
+.payment_method_wrap .payment_paypal {
+    max-width: 124px;
+    width: 100%;
+    background-color: #263B80;
+    border-radius: 5px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+.payment_method_wrap .payment_paypal:hover{
+    background-color: #263B80!important;
+}
+.payment_method_wrap .payment_paypal svg {
+    width: 59px;
+}
+
+.payment_method_wrap .payment_stripe {
+    max-width: 124px;
+    width: 100%;
+    background-color: #635BFF;
+    border-radius: 5px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+.payment_method_wrap .payment_stripe:hover{
+    background-color: #635BFF!important;
+}
+.payment_method_wrap .payment_stripe svg {
+    width: 40px;
+}
+
+.payment_method_wrap .payment_counter {
+    max-width: 157px;
+    width: 100%;
+    background: #222222;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 8px;
+    line-height: 32px;
+    cursor: pointer;
+    position: relative;
+    text-transform: capitalize;
+}
+.payment_method_wrap .payment_counter:hover {
+    background: #222222!important;
+}
+.pay_check_box1 {
+    position: absolute;
+    right: -42px;
+    top: -7px;
+}
+.pay_check_box2{
+    position: absolute;
+    right: -32px;
+    top: -7px;
+}
+.pay_check_box3{
+    position: absolute;
+    right: -22px;
+    top: -7px;
+}
+/* HOlidays css Start  */
+.holidays_wrapper{
+    display: flex;
+
+}
+.holidays_wrapper .holiday_calender_wrap{
+    max-width: 280px;
+    flex: 1;
+}
+.holidays_wrapper .holidays_date_wrap{
+    flex: 2;
+    padding-top: 8px;
+}
+
+/* buSiness Staff Css Start */
+.staff_input_wrap{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Input field add Section css Start */
+.check_box_lists{
+    display: flex;
+    flex-wrap: wrap
+}
+.inpt_add_btn{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.inpt_add_btn div{
+   width: 20px;
+   height: 20px;
+   background-color: #222222;
+   color: #fff;
+   text-align: center;
+   border-radius: 4px;
+   cursor: pointer;
+}
+.input_list_fields{
+     display: flex;
+   flex-wrap: wrap; 
+   justify-content: space-between; 
+   padding: 5px 15px
+}
+
+.input_list_fields .items {
+    width: calc(50% - 10px); 
+  }
+
+  .input_list_fields .rs-picker-toggle-wrapper{
+    width: 100%;
+  }
+
+/* Event Section css Start  */
+
+/* Booking css Start  */
+.custom_label{
+    margin: 0;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    display: block;
+    color: #222222;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* Ticket mess Attachment Start */
+.Editor_Attachment_section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.attach_file_outer_box {
+    display: flex;
+    gap: 10px;
+}
+
+.attach_file_box {
+    border: 1px solid #C7D8D8;
+    border-radius: 6px;
+    padding: 5px;
+    position: relative;
+    height: 80px;
+    width: 80px;
+    margin-top: 4px;
+}
+
+.attach_file_box>label {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.attach_file_box>label>input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.attach_file_box>label>.attach_file_label svg path {
+    fill: var(--primary-color);
+}
+
+.attach_file_box>label>.attach_file_label p {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 25px;
+}
+
+.file_preview {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.file_preview>img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.create_acc_mes a{
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.formWrapper{
+    margin-bottom: 6px;
+}
+
+@media (max-width:1148px){
+.event_hour div{
+    width: 312px;
+}
+}
+@media (max-width:1086px){
+    .step2_form_wrap{
+        max-width: 675px;
+    }
+    .bussiness_hour_singe_wrapper{
+        flex-direction: column;
+    }
+    .hour_wrap_label{
+        display: none;
+    }
+}
+@media (max-width:930px){
+
+    .holidays_wrapper{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+@media screen and (max-width: 630px) {
+    .staff_input_wrap{
+        flex-direction: column;
+        align-items: inherit;
+    }
+   
+}
+
+/* campaign.module.css */
+
+
+@media screen and (max-width: 572px) {
+    .step3_main {
+
+        flex-direction: column;
+
+    }
+    .main_card {
+
+        margin-top: 12px;
+
+    }
+    .subheadline {
+
+        flex-direction: column;
+
+    }
+    .payment_method_wrap{
+        flex-direction: column;
+    }
+    .payment_method_wrap .payment_stripe{
+        width: auto;
+        padding: 4px;
+    }
+    .payment_method_wrap .payment_paypal{
+        width: auto;
+        padding: 4px;
+    }
+    .payment_method_wrap .payment_counter{
+        width: auto;
+        padding: 4px;
+    }
+    .inputhadline {
+        flex-direction: column;
+        margin-left: 0;
+
+    }
+
+    .inputhadline input {
+        width: auto;
+    }
+
+    .inputhadline .input2 {
+        margin-left: 0;
+
+    }
+    .steps_form_wrap {
+       padding: 25px;
+  }
+
+}
+
+
+@media screen and (max-width: 490px) {
+.staff_input_wrap{
+    flex-direction: column;
+}
+
+.input_list_fields .items {
+  width: 100%;
+}
+.check_box_lists{
+    margin-bottom: 12px;
+}
+}
+
+
+
+    
+
+
+
+
+
+

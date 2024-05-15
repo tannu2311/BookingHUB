@@ -1,0 +1,26 @@
+.smtp_wrapper{
+    max-width: 840px;
+    width: 100%;
+    box-shadow: 4px 4px 32px 0px #00000008;
+    background-color: #FFFFFF;
+    padding: 45px;
+}
+
+.code_wrapper{
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.codes_table input{
+    background-color: rgba(var(--primary-color-rgb), 0.15);
+    color: var(--primary-color);
+    padding: 2px;
+}
+
+.code_detail_show{
+    display: block;
+    transition: all .5s;
+}
+.code_detail_hide{
+    display: none;
+    transition: all .5s;
+}

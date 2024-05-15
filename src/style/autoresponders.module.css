@@ -1,0 +1,378 @@
+.autoresponders_main {
+    max-width: 1300px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 25px 50px 30px 30px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 32px 0px #00000008;
+}
+
+.autoresponders_svg {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.autoresponders_svg div {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-gap: 30px;
+}
+
+.autoresponders_svg .auto_wrap div {
+    position: relative;
+}
+
+.autoresponders_svg .auto_wrap div a {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.autoresponders_svg2 {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    transition: .3s all;
+    cursor: pointer;
+}
+
+.autoresponders_active {
+    visibility: hidden;
+}
+
+.autoresponders_button {
+    width: 131px;
+    height: 50px;
+    background-color: #222222;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+
+}
+
+.autoresponders_button1 {
+
+    width: 131px;
+    height: 50px;
+    background-color: #DD1047;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    margin-left: 12px;
+    border-radius: 5px;
+
+}
+
+.autoresponders_aweber {
+    max-width: 220px;
+    width: 100%;
+    height: 60px;
+    background-color: #263B80;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding-top: 18px;
+    transition: .3s all;
+    padding: 18px 50px
+}
+
+.autoresponders_aweber:hover {
+
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
+
+}
+
+.autoresponders_getrespons {
+    max-width: 220px;
+    width: 100%;
+    height: 60px;
+    background-color: #00BAFF;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding-top: 18px;
+    transition: .3s all;
+    padding: 18px 50px
+}
+
+.autoresponders_getrespons:hover {
+
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
+
+}
+
+.autoresponders_activecampaign {
+
+    max-width: 220px;
+    width: 100%;
+    height: 60px;
+    background-color: #356AE6;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding-top: 18px;
+    transition: .3s all;
+    padding: 18px 50px
+}
+
+.autoresponders_activecampaign:hover {
+
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
+
+}
+
+.autoresponders_constant {
+
+    max-width: 220px;
+    width: 100%;
+    height: 60px;
+    background-color:
+        #1856ED;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+    padding-top: 15px;
+    transition: .3s all;
+    padding: 18px 50px
+}
+
+.autoresponders_constant:hover {
+
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
+
+}
+
+
+
+
+.autoresponders_mailchimp {
+    max-width: 220px;
+    width: 100%;
+    height: 60px;
+    background-color: #FFE01A;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: .3s all;
+    padding: 18px 50px
+}
+
+.autoresponders_mailchimp:hover {
+
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
+
+}
+
+.autoresponders_convertkit {
+    max-width: 220px;
+    width: 100%;
+    height: 60px;
+    background-color: #FB6970;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+    padding-top: 15px;
+    transition: .3s all;
+    padding: 18px 50px
+}
+
+.autoresponders_convertkit:hover {
+
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
+
+}
+
+.autoresponders_sendpule {
+    max-width: 220px;
+    width: 100%;
+    height: 60px;
+    background-color: #199FC0;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+    padding-top: 18px;
+    transition: .3s all;
+    padding: 18px 50px
+}
+
+.autoresponders_sendpule:hover {
+
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
+
+}
+
+.autoresponders_sendgrid {
+    width: 210px;
+    height: 60px;
+    background-color: #213443;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+    padding-top: 15px;
+    transition: .3s all;
+    padding: 18px 50px
+}
+
+.autoresponders_sendgrid:hover {
+
+    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgba(82, 63, 105, 0.05);
+
+}
+
+.hide_tick {
+    display: none;
+
+}
+
+.cross_chek {
+    display: none;
+    border-radius: 50%;
+    fill: #DD1047
+}
+
+.active_autoresponder .cross_chek {
+    display: block;
+    position: absolute;
+    z-index: 9;
+    right: -14px;
+    top: -9px;
+    background-color: #DD1047;
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 11px;
+}
+
+.active_autoresponder {
+    padding: 3px;
+    border: 2px solid #DD1047;
+    border-radius: 10px;
+}
+
+.active_autoresponder .hide_tick {
+    display: block;
+    position: absolute;
+    z-index: 9;
+    right: 10px;
+    bottom: 5px;
+}
+
+.active_autoresponder span svg {
+    fill: #fff;
+}
+.autoresponders_svg .auto_wrap div svg{
+    margin: auto;
+}
+
+/* Connection For Awevr and contant contact page CSs  */
+
+.connect_outer_box .tick_div {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.connect_outer_box .tick_div img {
+    width: 100px;
+}
+
+@media screen and (max-width: 1050px) {
+    .autoresponders_svg {
+        flex-direction: column;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    .autoresponders_svg .auto_wrap {
+        grid-template-columns: auto;
+    }
+
+    .autoresponders_svg2 {
+        flex-direction: column;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    .autoresponders_main {
+        max-width:100%;
+        width: auto;
+        height: auto;
+    }
+
+    .autoresponders_activecampaign {
+        max-width:100%;
+        width: auto;
+        padding: auto;
+    }
+
+    .autoresponders_aweber {
+        max-width:100%;
+        padding: auto;
+        width: auto;
+    }
+
+    .autoresponders_getrespons {
+        max-width:100%;
+        padding: auto;
+        width: auto;
+    }
+
+    .autoresponders_mailchimp {
+        max-width:100%;
+        padding: auto;
+        width: auto;
+    }
+
+    .autoresponders_constant {
+        max-width:100%;
+        padding: auto;
+        width: auto;
+    }
+
+    .autoresponders_sendgrid {
+        max-width:100%;
+        padding: auto;
+        width: auto;
+    }
+
+    .autoresponders_sendpule {
+        max-width:100%;
+        padding: auto;
+        width: auto;
+    }
+
+    .autoresponders_convertkit {
+        max-width:100%;
+        padding: auto;
+        width: auto;
+    }
+   
+}

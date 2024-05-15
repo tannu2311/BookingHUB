@@ -1,0 +1,47 @@
+.integration_container{
+  display: flex;
+  max-width:426px ; 
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  align-items: center;
+  padding: 3px;
+  box-shadow: 2px 2px 32px 0px #0000001F;
+  margin-bottom: 50px;
+}
+
+
+ .integration_tab{
+    width: 210px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 30px;
+    text-align: center;
+    color: var(--body-color);
+    cursor: pointer;
+    padding: 12px 0px;
+  }
+  
+  .active_tab {
+    background-color: #DD1047;
+    color: white;
+    border-radius: 30px;
+  }
+  .active_tab a{
+    color: white;
+  }
+  @media screen and (max-width: 572px) {
+    .integration_tab {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width:410px) {
+    .integration_container {
+      flex-direction: column;
+    }
+  
+    .active_tab {
+      width: 100%;
+    }
+  }

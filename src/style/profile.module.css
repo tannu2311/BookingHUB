@@ -1,0 +1,246 @@
+.profile_main {
+    background-color: #FBFAFF;
+    border-radius: 20px;
+    display: flex;
+    gap: 22px;
+}
+
+.profile_first_section {
+    max-width: 624px;
+    max-height: 187px;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 4px 4px 32px 0px #00000008;
+    border-radius: 5px;
+    padding: 48px 40px;
+}
+
+.profile_image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+
+}
+
+.profile_image img {
+    object-fit: contain;
+}
+
+.profile_content {
+    display: flex;
+    gap: 12px;
+}
+
+.profile_name {
+    /* margin-left: 12px; */
+}
+
+.profile_name p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    margin: -10px 0px;
+}
+
+.profile_name h3 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.profile_second {
+    max-width: 856px;
+    background-color: #fff;
+    /* margin-left: 22px; */
+    border-radius: 5px;
+    padding: 45px;
+    width: 100%;
+    box-shadow: 4px 4px 32px 0px #00000008;
+}
+
+/* upload prolie box start */
+.upload_file_box {
+    border: 1px solid #C7D8D8;
+    border-radius: 50%;
+    padding: 5px;
+    position: relative;
+    min-height: 90px;
+    width: 90px;
+    height: 90px;
+}
+
+.upload_file_box>label {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.upload_file_box>label>input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload_file_box>label>.upload_file_label {
+    line-height: 14px;
+    font-size: 12px;
+}
+
+.upload_file_box>label>.upload_file_label svg {
+    width: 25px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.upload_file_box>label>.upload_file_label svg path {
+    fill: var(--primary-color);
+}
+
+.upload_file_box>label>.upload_file_label p {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.file_preview {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.file_preview>img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+.remove_icon {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffe8e8;
+    cursor: pointer;
+}
+
+.remove_icon::before,
+.remove_icon::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: #ff6666;
+    transform: rotate(45deg);
+}
+
+.remove_icon::after {
+    transform: rotate(-45deg);
+}
+
+.edit_profile {
+    position: absolute;
+    background: var(--primary-color);
+    padding: 3px;
+    right: 0;
+    bottom: 1px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile_billing{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 46px;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 30px;
+    cursor: pointer;
+    outline: none;
+    transition: all .5s;
+    position: relative;
+    margin-left: 10px;
+    
+}
+
+
+
+/* upload prolie box end */
+
+@media (max-width:1330px) {
+    .profile_main {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0;
+        margin-top: 15px;
+    }
+
+    .profile_second {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 572px) {
+    .profile_first_section{
+        max-height: fit-content;
+        flex-direction: column;
+        padding: 25px;
+        align-items: center;
+    }
+    .profile_content{
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile_name{
+        margin: 0;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+    .profile_name p{
+        margin: 0;
+    }
+   .profile_second {
+       padding: 15px;
+   }
+
+   .profile_second h2{
+      font-size: 16px;
+   }
+   
+}

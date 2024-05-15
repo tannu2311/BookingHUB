@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    background-color: #fff;
+    padding: 14.5px 40px;
+    border-bottom: 1px solid #FBFAFF;
+    max-height: 70px;
+    gap: 10px;
+    z-index: 9;
+    box-shadow: 4px 4px 32px 0px #00000008;
+}
+
+.header h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+}
+.wrapper{
+    text-align: center;
+    margin: 30px auto;
+}
+.wrapper > .vector svg{
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+.wrapper > p{
+    margin: 0;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
